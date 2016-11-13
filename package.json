@@ -1,0 +1,14 @@
+{
+  "name": "ffbinaries-api",
+  "version": "1.0.0",
+  "description": "Web API running on ffbinaries.com",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Vot Z <http://vot-z.com>",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^1.0.0",
+    "hapi": "^15.2.0",
+    "lodash": "^4.16.6"
+  }
+}
