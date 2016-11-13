@@ -33,7 +33,7 @@ All binaries provided by ffbinaries are hosted on GitHub
 (https://github.com/vot/ffbinaries-prebuilt/releases) and are simply repackaged
 versions of packages provided by other people (see Credits section).
 
-The repackaging was done in order to provide consistent archive format
+Repackaging was done in order to provide consistent archive format
 and ship all components as individual downloads.
 
 ## Online documentation

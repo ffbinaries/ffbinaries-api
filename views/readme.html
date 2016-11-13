@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>FFbinaries</title>
+  <title>ffbinaries</title>
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -33,23 +33,42 @@
 
   <br /><br /><br />
 
+
+
   <div class="container">
-    <h2>Platforms</h2>
+    <h2>Command line interface</h2>
+
+    <p>A CLI client written in Node is available. You can install it with
+    <code>npm install ffbinaries -g</code>. Requires Node.js installed on your system.</p>
+
+    <p>It allows you to automate fetching of ffmpeg binaries, for example
+    in build systems, i.e. <code>ffbinaries linux-64 --output=/my-binaries/ffmpeg</code>.</p>
+
+    <p>More info on <a target="_blank" href="https://www.npmjs.com/package/ffbinaries" target="_blank">ffbinaries CLI downloader module</a>.</p>
+
+
+    <h2>Git repositories</h2>
 
     <ul>
-      <li>windows-32</li>
-      <li>windows-64</li>
-      <li>linux-32</li>
-      <li>linux-64</li>
-      <li>linux-armhf</li>
-      <li>linux-armel</li>
-      <li>osx-64</li>
+      <li>This site: <a href="https://github.com/vot/ffbinaries-api" target="_blank">ffbinaries-api</a></li>
+      <li>Node module: <a href="https://github.com/vot/ffbinaries-node" target="_blank">ffbinaries-node</a></li>
+      <li>Binaries are stored in <a href="https://github.com/vot/ffbinaries-prebuilt/releases/v3.2" target="_blank">ffbinaries-prebuilt</a></li>
     </ul>
 
-    <h2>Components</h2>
 
-    <p>OS X version ships in individually packaged components. Linux and Windows ship in bundles.</p>
-    <br />
+    <h2>Platforms</h2>
+
+    <p>Supported platform codes:
+      <code>windows-32</code>,
+      <code>windows-64</code>,
+      <code>linux-32</code>,
+      <code>linux-64</code>,
+      <code>linux-armhf</code>,
+      <code>linux-armel</code>,
+      <code>osx-64</code>.
+    </p>
+
+    <h2>Components</h2>
 
     <table class="table">
       <tr>
@@ -85,21 +104,24 @@
     </table>
 
 
-    <h2>Command line interface</h2>
 
-    <p><a target="_blank" href="https://www.npmjs.com/package/ffbinaries" target="_blank">CLI downloader module</a>
-    written in Node is available.</p>
+    <h2>Binaries provided</h2>
 
-    <p>It allows you to automate fetching of ffmpeg binaries, for example
-    in build systems, i.e. <code>ffbinaries linux-64 --output=/my-binaries/ffmpeg</code>.</p>
+    <p>All binaries provided by ffbinaries are hosted on GitHub
+    (<a href="https://github.com/vot/ffbinaries-prebuilt/releases" target="_blank">repo</a>)
+    and are simply repackaged versions of packages provided by other people (see Credits section).</p>
+
+    <p>Repackaging was done in order to provide consistent archive format
+    and ship all components as individual downloads.</p>
 
 
-    <h2>Git repositories</h2>
+    <h2>Online documentation</h2>
 
     <ul>
-      <li>This site: <a href="https://github.com/vot/ffbinaries-api" target="_blank">ffbinaries-api</a></li>
-      <li>Node module: <a href="https://github.com/vot/ffbinaries-node" target="_blank">ffbinaries-node</a></li>
-      <li>Binaries are stored in <a href="https://github.com/vot/ffbinaries-prebuilt/releases/v3.2" target="_blank">ffbinaries-prebuilt</a></li>
+      <li><a href="http://ffmpeg.org/ffmpeg.html" target="_blank">ffmpeg</a></li>
+      <li><a href="http://ffmpeg.org/ffplay.html" target="_blank">ffplay</a></li>
+      <li><a href="http://ffmpeg.org/ffprobe.html" target="_blank">ffprobe</a></li>
+      <li><a href="http://ffmpeg.org/ffserver.html" target="_blank">ffserver</a></li>
     </ul>
 
 
@@ -113,14 +135,15 @@
       <li>Windows version: <a href="http://ffmpeg.zeranoe.com/builds/" target="_blank">http://ffmpeg.zeranoe.com/builds/</a></li>
     </ul>
 
-    <h2>Online documentation</h2>
 
-    <ul>
-      <li><a href="http://ffmpeg.org/ffmpeg.html" target="_blank">ffmpeg</a></li>
-      <li><a href="http://ffmpeg.org/ffplay.html" target="_blank">ffplay</a></li>
-      <li><a href="http://ffmpeg.org/ffprobe.html" target="_blank">ffprobe</a></li>
-      <li><a href="http://ffmpeg.org/ffserver.html" target="_blank">ffserver</a></li>
-    </ul>
+    <h2>Licences</h2>
+
+    <p>This project provides precompiled binaries only.</p>
+
+    <p>Please respect the licences of all software here - see
+    <a href="http://ffmpeg.org/legal.html" target="_blank">http://ffmpeg.org/legal.html</a>.</p>
+
+    <br /><br /><br /><br />
   </div>
 
 </body>
