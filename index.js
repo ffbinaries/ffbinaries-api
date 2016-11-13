@@ -28,6 +28,9 @@ function _currentTime () {
 
 
 function _logRequest(url) {
+  if (url === '/favicon.ico' || url === '/robots.txt') {
+    return;
+  }
   var key = url.replace('.', '-') + '.' + _currentTime();
 
   var data = fse.readJsonSync(LOGFILE) || {};
