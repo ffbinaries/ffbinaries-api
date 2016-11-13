@@ -1,18 +1,49 @@
 {
   "version": "3.2",
   "permalink": "%%BASEURL%%/api/version/3.2",
+
   "bin": {
-    "windows-32": "https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-3.2-win32-static.zip",
-    "windows-64": "https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-3.2-win64-static.zip",
-    "linux-32": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-32bit-static.tar.xz",
-    "linux-64": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz",
-    "linux-armhf": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armhf-32bit-static.tar.xz",
-    "linux-armel": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armel-32bit-static.tar.xz",
+    "windows-32": {
+      "ffmpeg": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffmpeg-3.2-win-32.zip",
+      "ffplay": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffplay-3.2-win-32.zip",
+      "ffprobe": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffprobe-3.2-win-32.zip",
+      "ffserver": null
+    },
+    "windows-64": {
+      "ffmpeg": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffmpeg-3.2-win-64.zip",
+      "ffplay": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffplay-3.2-win-64.zip",
+      "ffprobe": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffprobe-3.2-win-64.zip",
+      "ffserver": null
+    },
+    "linux-32": {
+      "ffmpeg": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffmpeg-3.2-linux-32.zip",
+      "ffplay": null,
+      "ffprobe": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffprobe-3.2-linux-32.zip",
+      "ffserver": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffserver-3.2-linux-32.zip"
+    },
+    "linux-64": {
+      "ffmpeg": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffmpeg-3.2-linux-64.zip",
+      "ffplay": null,
+      "ffprobe": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffprobe-3.2-linux-64.zip",
+      "ffserver": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffserver-3.2-linux-64.zip"
+    },
+    "linux-armhf": {
+      "ffmpeg": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffmpeg-3.2-linux-armhf.zip",
+      "ffplay": null,
+      "ffprobe": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffprobe-3.2-linux-armhf.zip",
+      "ffserver": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffserver-3.2-linux-armhf.zip"
+    },
+    "linux-armel": {
+      "ffmpeg": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffmpeg-3.1.4-linux-armel.zip",
+      "ffplay": null,
+      "ffprobe": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffprobe-3.1.4-linux-armel.zip",
+      "ffserver": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffserver-3.1.4-linux-armel.zip"
+    },
     "osx-64": {
-      "ffmpeg": "https://evermeet.cx/ffmpeg/ffmpeg-3.2.7z",
-      "ffprobe": "https://evermeet.cx/ffmpeg/ffprobe-3.2.7z",
-      "ffserver": "https://evermeet.cx/ffmpeg/ffserver-3.2.7z",
-      "ffplay": "https://evermeet.cx/ffmpeg/ffplay-3.2.7z"
+      "ffmpeg": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffmpeg-3.2-osx-64.zip",
+      "ffplay": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffplay-3.2-osx-64.zip",
+      "ffprobe": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffprobe-3.2-osx-64.zip",
+      "ffserver": "https://github.com/vot/ffbinaries-prebuilt/releases/download/3.2/ffserver-3.2-osx-64.zip"
     }
   }
 }
