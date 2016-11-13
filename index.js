@@ -7,7 +7,7 @@ const constants = require('./constants')
 const VIEWSDIR = constants.VIEWSDIR;
 const JSONDIR = constants.JSONDIR
 const LOGFILE = constants.LOGFILE;
-const BASEURL = constants.BASEDIR;
+const BASEURL = constants.BASEURL;
 const CURRENT_VERSION = constants.CURRENT_VERSION;
 
 // ensure request log file
