@@ -2,15 +2,13 @@ const path = require('path');
 const _ = require('lodash');
 const fse = require('fs-extra');
 const Hapi = require('hapi');
+const constants = require('./constants')
 
-const VIEWSDIR = path.join(__dirname, 'views');
-const JSONDIR = path.join(__dirname, 'json');
-const LOGFILE = path.join(__dirname, 'requestlog.json');
-
-// const BASEURL = 'http://ffbinaries.com';
-const BASEURL = 'http://localhost:3000';
-const CURRENT_VERSION = '3.2';
-
+const VIEWSDIR = constants.VIEWSDIR;
+const JSONDIR = constants.JSONDIR
+const LOGFILE = constants.LOGFILE;
+const BASEURL = constants.BASEDIR;
+const CURRENT_VERSION = constants.CURRENT_VERSION;
 
 // ensure request log file
 try {
