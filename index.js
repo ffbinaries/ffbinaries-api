@@ -153,6 +153,13 @@ server.route({
     reply.redirect('/api/v1');
   }
 });
+server.route({
+  method: 'GET',
+  path: '/api/v1/latest',
+  handler: function (request, reply) {
+    reply.redirect('/api/v1/version/latest');
+  }
+});
 
 server.route({
   method: 'GET',
