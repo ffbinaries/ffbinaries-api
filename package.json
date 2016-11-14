@@ -1,6 +1,6 @@
 {
   "name": "ffbinaries-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Web API running on ffbinaries.com",
   "main": "index.js",
   "scripts": {},

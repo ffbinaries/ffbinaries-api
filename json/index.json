@@ -1,7 +1,6 @@
 {
-  "latest": "%%BASEURL%%/api/latest",
-  "versions": "%%BASEURL%%/api/versions",
-  "version": {
-    "3.2": "%%BASEURL%%/api/version/3.2"
+  "versions": {
+    "latest": "%%BASEURL%%/api/v1/version/latest",
+    "3.2": "%%BASEURL%%/api/v1/version/3.2"
   }
 }

@@ -1,6 +1,6 @@
 {
   "version": "3.2",
-  "permalink": "%%BASEURL%%/api/version/3.2",
+  "permalink": "%%BASEURL%%/api/v1/version/3.2",
 
   "bin": {
     "windows-32": {

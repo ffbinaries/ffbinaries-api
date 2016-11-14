@@ -77,6 +77,7 @@ const preResponse = function (request, reply) {
 
 server.ext('onPreResponse', preResponse);
 
+// Info pages
 server.route({
   method: 'GET',
   path: '/',
@@ -101,10 +102,44 @@ server.route({
   }
 });
 
-// versions
+// API V1 redirect /api requests to /api/v1
 server.route({
   method: 'GET',
   path: '/api',
+  handler: function (request, reply) {
+    reply.redirect('/api/v1');
+  }
+});
+
+server.route({
+  method: 'GET',
+  path: '/api/versions',
+  handler: function (request, reply) {
+    reply.redirect('/api/v1');
+  }
+});
+
+server.route({
+  method: 'GET',
+  path: '/api/latest',
+  handler: function (request, reply) {
+    reply.redirect('/api/v1/version/latest');
+  }
+});
+
+server.route({
+  method: 'GET',
+  path: '/api/version/{version}',
+  handler: function (request, reply) {
+    reply.redirect('/api/v1/version/' + request.params.version);
+  }
+});
+
+
+// API V1 versions
+server.route({
+  method: 'GET',
+  path: '/api/v1',
   handler: function (request, reply) {
     reply(_getJson('index'));
   }
@@ -113,15 +148,15 @@ server.route({
 // versions
 server.route({
   method: 'GET',
-  path: '/api/versions',
+  path: '/api/v1/versions',
   handler: function (request, reply) {
-    reply(_getJson('versions'));
+    reply.redirect('/api/v1');
   }
 });
 
 server.route({
   method: 'GET',
-  path: '/api/latest',
+  path: '/api/v1/version/latest',
   handler: function (request, reply) {
     reply(_getJson(CURRENT_VERSION));
   }
@@ -129,7 +164,7 @@ server.route({
 
 server.route({
   method: 'GET',
-  path: '/api/version/{version}',
+  path: '/api/v1/version/{version}',
   handler: function (request, reply) {
     reply(_getJson(request.params.version));
   }
