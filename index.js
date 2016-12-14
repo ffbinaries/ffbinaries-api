@@ -21,8 +21,8 @@ const server = new Hapi.Server();
 server.connection({port: 3000});
 
 function _currentTime () {
-  var now = new Date();
-  var date = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-');
+  const now = new Date();
+  const date = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-');
   return date;
 }
 
@@ -31,10 +31,10 @@ function _logRequest(url) {
   if (url === '/favicon.ico' || url === '/robots.txt') {
     return;
   }
-  var key = url.replace('.', '-') + '.' + _currentTime();
+  const key = url.replace('.', '-') + '.' + _currentTime();
 
-  var data = fse.readJsonSync(LOGFILE) || {};
-  var currentCount = _.get(data, key) || 0;
+  const data = fse.readJsonSync(LOGFILE) || {};
+  const currentCount = _.get(data, key) || 0;
   _.set(data, key, currentCount + 1);
 
   fse.writeJsonSync(LOGFILE, data);
@@ -48,24 +48,27 @@ function _replacePlaceholders(data) {
 }
 
 function _getJson(file) {
+  let data;
+
   try {
-    var data = fse.readFileSync(path.resolve(JSONDIR + '/' + file + '.json')).toString();
+    data = fse.readFileSync(path.resolve(JSONDIR + '/' + file + '.json')).toString();
     data = _replacePlaceholders(data);
     data = JSON.parse(data);
   } catch (e) {
     console.log(e);
-    var data = '404';
+    data = '404';
   }
   return data;
 }
 
 function _getView(file) {
+  let data;
   try {
-    var data = fse.readFileSync(VIEWSDIR + '/' + file + '.html').toString();
+    data = fse.readFileSync(VIEWSDIR + '/' + file + '.html').toString();
     data = _replacePlaceholders(data);
   } catch (e) {
     console.log(e);
-    var data = '404';
+    data = '404';
   }
   return data;
 }
@@ -98,7 +101,8 @@ server.route({
   method: 'GET',
   path: '/stats',
   handler: function (request, reply) {
-    reply(_getJson('../requestlog'));
+    const requestLog = _getJson('../requestlog');
+    reply(requestLog);
   }
 });
 
