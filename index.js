@@ -26,7 +26,8 @@ function _currentTime () {
   return date;
 }
 
-
+// TODO: Don't replace dots in paths
+// TODO: Aggregate 404s
 function _logRequest(url) {
   if (url === '/favicon.ico' || url === '/robots.txt') {
     return;
@@ -40,6 +41,8 @@ function _logRequest(url) {
   fse.writeJsonSync(LOGFILE, data);
 }
 
+// TODO: read https://api.github.com/repos/vot/ffbinaries-prebuilt/releases
+// to get stats + cache for 10 min
 function _replacePlaceholders(data) {
   data = data.replace(/%%BASEURL%%/g, BASEURL);
   data = data.replace(/%%CURRENT_VERSION%%/g, CURRENT_VERSION);
