@@ -11,11 +11,13 @@
   <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
     <div class="container">
       <ul class="nav navbar-nav pull-right">
+<!--
         <li>
           <a target="_blank" href="https://www.npmjs.com/package/ffbinaries">
             <img src="https://img.shields.io/npm/v/ffbinaries.svg" />
           </a>
         </li>
+-->
         <li>
           <a target="_blank" href="https://github.com/vot/ffbinaries-prebuilt/releases/v3.2">
             <img src="https://img.shields.io/github/downloads/vot/ffbinaries-prebuilt/v3.2/total.svg" />
@@ -39,7 +41,9 @@
 
     <p>Tiny API service which provides links to precompiled binaries for ffmpeg, ffprobe, ffserver and ffplay.</p>
 
-    <p>This service is still in the early phases of development.</p>
+    <p>You can connect to this API using regular HTTP GETs, for example <code>curl http://ffbinaries.com/api/v1/version/latest</code>.</p>
+
+    <p>There's also a <a target="_blank" href="https://www.npmjs.com/package/ffbinaries">downloader app</a> in Node.js which makes it easy to automatically download the right binaries for your platform or to integrate into your build process.</p>
 
     <br />
 
