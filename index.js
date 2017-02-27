@@ -105,7 +105,14 @@ server.route({
   path: '/stats',
   handler: function (request, reply) {
     const requestLog = _getJson('../requestlog');
-    reply(requestLog);
+    let rtn = {};
+    _.each(requestLog, function (val, key) {
+      var total = _.sum(_.map(val));
+      rtn[key] = total;
+    })
+
+    // reply(_getView('readme'));
+    reply(rtn);
   }
 });
 
