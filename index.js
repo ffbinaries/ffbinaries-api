@@ -3,12 +3,15 @@ const _ = require('lodash');
 const fse = require('fs-extra');
 const Hapi = require('hapi');
 const constants = require('./constants')
+const requestLib = require('request');
 
 const VIEWSDIR = constants.VIEWSDIR;
 const JSONDIR = constants.JSONDIR
 const LOGFILE = constants.LOGFILE;
 const BASEURL = constants.BASEURL;
 const CURRENT_VERSION = constants.CURRENT_VERSION;
+
+let GH_CACHE;
 
 // ensure request log file
 try {
@@ -43,9 +46,15 @@ function _logRequest(url) {
 
 // TODO: read https://api.github.com/repos/vot/ffbinaries-prebuilt/releases
 // to get stats + cache for 10 min
-function _replacePlaceholders(data) {
+function _replacePlaceholders(data, payload) {
   data = data.replace(/%%BASEURL%%/g, BASEURL);
   data = data.replace(/%%CURRENT_VERSION%%/g, CURRENT_VERSION);
+
+  if (payload) {
+    _.each(payload, function (val, key) {
+      data = data.replace('{{'+key+'}}', val);
+    });
+  }
 
   return data;
 }
@@ -64,11 +73,11 @@ function _getJson(file) {
   return data;
 }
 
-function _getView(file) {
+function _getView(file, payload) {
   let data;
   try {
     data = fse.readFileSync(VIEWSDIR + '/' + file + '.html').toString();
-    data = _replacePlaceholders(data);
+    data = _replacePlaceholders(data, payload);
   } catch (e) {
     console.log(e);
     data = '404';
@@ -105,14 +114,49 @@ server.route({
   path: '/stats',
   handler: function (request, reply) {
     const requestLog = _getJson('../requestlog');
-    let rtn = {};
+    let requestMap = {};
     _.each(requestLog, function (val, key) {
-      var total = _.sum(_.map(val));
-      rtn[key] = total;
-    })
+      requestMap[key] = _.sum(_.map(val));
+    });
 
-    // reply(_getView('readme'));
-    reply(rtn);
+    let payload = {
+      requests: JSON.stringify(requestMap, null, 2)
+    };
+
+    if (GH_CACHE && GH_CACHE.expiration > Date.now()) {
+      payload.github = GH_CACHE.data;
+      return reply(_getView('stats', payload));
+    }
+
+    const requestOpts = {
+      url: 'https://api.github.com/repos/vot/ffbinaries-prebuilt/releases',
+      headers: {
+        'User-Agent': 'ffbinaries.com'
+      }
+    }
+
+    requestLib(requestOpts, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var ghData = JSON.parse(body);
+        var ghDataRtn = {
+          total: 0
+        };
+        _.each(ghData[0].assets, function (val) {
+          ghDataRtn[val.name] = val.download_count;
+          ghDataRtn.total += val.download_count;
+        });
+
+        var ghDataString = JSON.stringify(ghDataRtn, null, 2);
+        GH_CACHE = {
+          expiration: Date.now() + (60 * 1000),
+          data: ghDataString
+        }
+
+        payload.github = ghDataString;
+      }
+
+      reply(_getView('stats', payload));
+    })
   }
 });
 
