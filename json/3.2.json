@@ -16,12 +16,15 @@
     "linux-32": {
       "ffmpeg": "https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffmpeg-3.2-linux-32.zip",
       "ffprobe": "https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffprobe-3.2-linux-32.zip",
-      "ffserver": "https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffserver-3.2-linux-32.zip"
+      "ffserver": "https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffserver-3.2-linux-32.zip",
+      "ffplay": "https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffplay-3.2.2-linux-32.zip"
     },
     "linux-64": {
       "ffmpeg": "https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffmpeg-3.2-linux-64.zip",
       "ffprobe": "https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffprobe-3.2-linux-64.zip",
-      "ffserver": "https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffserver-3.2-linux-64.zip"
+      "ffserver": "https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffserver-3.2-linux-64.zip",
+      "ffplay": "https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffplay-3.2.2-linux-64.zip"
+
     },
     "linux-armhf": {
       "ffmpeg": "https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffmpeg-3.2-linux-armhf.zip",
