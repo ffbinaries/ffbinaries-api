@@ -118,6 +118,23 @@ server.route({
     _.each(requestLog, function (val, key) {
       requestMap[key] = _.sum(_.map(val));
     });
+    var allowedPaths = [
+      "/",
+      "/stats",
+      "/readme",
+      "/api",
+      "/api/latest",
+      "/api/versions",
+      "/api/version/3-2",
+      "/api/v1/latest",
+      "/api/v1/versions",
+      "/api/v1",
+      "/api/v1/version/latest",
+      "/api/v1/version/3-2",
+      "/api/v1/version/2-7",
+    ];
+
+    requestMap = _.pick(requestMap, allowedPaths);
 
     let payload = {
       requests: JSON.stringify(requestMap, null, 2)
@@ -125,6 +142,8 @@ server.route({
 
     if (GH_CACHE && GH_CACHE.expiration > Date.now()) {
       payload.github = GH_CACHE.data;
+      var ghParsed = JSON.parse(GH_CACHE.data);
+      payload.githubTotal = ghParsed.total;
       return reply(_getView('stats', payload));
     }
 
@@ -153,6 +172,7 @@ server.route({
         }
 
         payload.github = ghDataString;
+        payload.githubTotal = ghDataRtn.total;
       }
 
       reply(_getView('stats', payload));
