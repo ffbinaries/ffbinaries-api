@@ -130,18 +130,33 @@ server.route({
       return k.startsWith('/api')
     });
 
+    function objectToHtml (object) {
+      var rtn = '<ul class="stats">';
+
+      _.each(object, function (val, k) {
+        rtn += '<li>';
+        rtn += '<span class="count">' + val + '</span> ';
+        rtn += '<code>' + k + '</code>';
+        rtn += '</li>';
+      });
+
+      rtn += '</ul>';
+      return rtn;
+    }
+
     let payload = {
-      logApiRequests: JSON.stringify(logApiRequests, null, 2),
+      // logApiRequests: JSON.stringify(logApiRequests, null, 2),
+      logApiRequests: objectToHtml(logApiRequests),
       logApiRequestsTotal: _.sum(_.map(logApiRequests)),
 
-      logPageRequests: JSON.stringify(logPageRequests, null, 2),
+      // logPageRequests: JSON.stringify(logPageRequests, null, 2),
+      logPageRequests: objectToHtml(logPageRequests),
       logPageRequestsTotal: _.sum(_.map(logPageRequests)),
     };
 
     if (GH_CACHE && GH_CACHE.expiration > Date.now()) {
-      payload.github = GH_CACHE.data;
-      var ghParsed = JSON.parse(GH_CACHE.data);
-      payload.githubTotal = ghParsed.total;
+      payload.github = objectToHtml(GH_CACHE.data);
+      payload.githubTotal = GH_CACHE.data.total;
       return reply(_getView('stats', payload));
     }
 
@@ -163,13 +178,13 @@ server.route({
           ghDataRtn.total += val.download_count;
         });
 
-        var ghDataString = JSON.stringify(ghDataRtn, null, 2);
+        // var ghDataString = JSON.stringify(ghDataRtn, null, 2);
         GH_CACHE = {
           expiration: Date.now() + (60 * 1000),
-          data: ghDataString
+          data: ghDataRtn
         }
 
-        payload.github = ghDataString;
+        payload.github = objectToHtml(ghDataRtn);
         payload.githubTotal = ghDataRtn.total;
       }
 
