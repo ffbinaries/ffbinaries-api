@@ -137,7 +137,8 @@ server.route({
     requestMap = _.pick(requestMap, allowedPaths);
 
     let payload = {
-      requests: JSON.stringify(requestMap, null, 2)
+      apiRequests: JSON.stringify(requestMap, null, 2),
+      apiRequestsTotal: _.sum(_.map(requestMap))
     };
 
     if (GH_CACHE && GH_CACHE.expiration > Date.now()) {
