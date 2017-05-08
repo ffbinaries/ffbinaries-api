@@ -14,7 +14,7 @@ The components of the ffmpeg suite are: ffmpeg, ffprobe, ffserver and ffplay.
 | ffserver | v   | v     |         |
 | ffplay   | v   | v*    | v       |
 
-* Only linux-32 and linux-64 builds are available for ffplay
+(* Only linux-32 and linux-64 builds are available for ffplay)
 
 
 ## Running the server locally
