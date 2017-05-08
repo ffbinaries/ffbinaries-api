@@ -31,15 +31,25 @@
 
 
   <div class="container">
-    <h2>{{githubTotal}} Binaries Downloaded</h2>
-    <br />
-    <pre>{{github}}</pre>
+    <div class="col-md-6 col-lg-4">
+      <h2>{{githubTotal}} Binaries Downloaded</h2>
+      <br />
+      <pre>{{github}}</pre>
+    </div>
 
-    <br />
+    <div class="col-md-6 col-lg-4">
+      <h2>{{logApiRequestsTotal}} API Requests</h2>
+      <br />
+      <pre>{{logApiRequests}}</pre>
+    </div>
 
-    <h2>{{apiRequestsTotal}} API Requests</h2>
-    <br />
-    <pre>{{apiRequests}}</pre>
+    <div class="col-md-6 col-lg-4">
+      <h2>{{logPageRequestsTotal}} Page Views</h2>
+      <br />
+      <pre>{{logPageRequests}}</pre>
+    </div>
+
+
 
     <br /><br /><br /><br />
   </div>

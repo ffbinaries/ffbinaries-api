@@ -118,27 +118,24 @@ server.route({
     _.each(requestLog, function (val, key) {
       requestMap[key] = _.sum(_.map(val));
     });
-    var allowedPaths = [
+    var pagePaths = [
       "/",
       "/stats",
-      "/readme",
-      "/api",
-      "/api/latest",
-      "/api/versions",
-      "/api/version/3-2",
-      "/api/v1/latest",
-      "/api/v1/versions",
-      "/api/v1",
-      "/api/v1/version/latest",
-      "/api/v1/version/3-2",
-      "/api/v1/version/2-7",
+      "/readme"
     ];
 
-    requestMap = _.pick(requestMap, allowedPaths);
+    var logPageRequests = _.pick(requestMap, pagePaths);
+
+    var logApiRequests = _.pickBy(requestMap, function (v, k) {
+      return k.startsWith('/api')
+    });
 
     let payload = {
-      apiRequests: JSON.stringify(requestMap, null, 2),
-      apiRequestsTotal: _.sum(_.map(requestMap))
+      logApiRequests: JSON.stringify(logApiRequests, null, 2),
+      logApiRequestsTotal: _.sum(_.map(logApiRequests)),
+
+      logPageRequests: JSON.stringify(logPageRequests, null, 2),
+      logPageRequestsTotal: _.sum(_.map(logPageRequests)),
     };
 
     if (GH_CACHE && GH_CACHE.expiration > Date.now()) {
