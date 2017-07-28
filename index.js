@@ -111,6 +111,14 @@ server.route({
 
 server.route({
   method: 'GET',
+  path: '/downloads',
+  handler: function (request, reply) {
+    reply(_getView('downloads'));
+  }
+});
+
+server.route({
+  method: 'GET',
   path: '/stats',
   handler: function (request, reply) {
     const requestLog = _getJson('../requestlog');
@@ -198,7 +206,8 @@ server.route({
   method: 'GET',
   path: '/api',
   handler: function (request, reply) {
-    reply.redirect('/api/v1');
+    // reply.redirect('/api/v1');
+    reply(_getView('api'));
   }
 });
 

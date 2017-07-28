@@ -3,33 +3,20 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>ffbinaries</title>
+  <title>Download binaries for ffmpeg, ffprobe, ffserver and ffplay (cross-platform: Windows, Mac, Linux)</title>
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
   <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
     <div class="container">
-      <ul class="nav navbar-nav pull-right">
-<!--
-        <li>
-          <a target="_blank" href="https://www.npmjs.com/package/ffbinaries">
-            <img src="https://img.shields.io/npm/v/ffbinaries.svg" />
-          </a>
-        </li>
--->
-        <li>
-          <a href="/stats">
-            <img src="https://img.shields.io/github/downloads/vot/ffbinaries-prebuilt/total.svg" />
-          </a>
-        </li>
-      </ul>
       <ul class="nav navbar-nav">
         <li><a class="navbar-brand" href="/">ffbinaries</a></li>
-        <!-- <li><a href="/api">API</a></li> -->
+        <li><a href="/downloads">Downloads</a></li>
+        <li><a href="/api">API</a></li>
         <li><a href="/readme">Readme</a></li>
-        <!-- <li><a href="/stats">Stats</a></li> -->
-        <li><a href="https://www.npmjs.com/package/ffbinaries" target="_blank">CLI downloader</a></li>
+        <li><a href="/stats">Stats</a></li>
+        <li><a href="https://www.npmjs.com/package/ffbinaries" target="_blank">Node.js module</a></li>
       </ul>
     </div>
   </nav>
@@ -37,27 +24,29 @@
   <br /><br /><br />
 
   <div class="container">
-    <h1>ffbinaries</h1>
-    <br />
-
-    <p>Tiny API service which provides links to precompiled binaries for ffmpeg, ffprobe, ffserver and ffplay.</p>
-
-    <p>You can connect to this API using regular HTTP GETs, for example <code>curl http://ffbinaries.com/api/v1/version/latest</code>.</p>
-
-    <p>There's also a <a target="_blank" href="https://www.npmjs.com/package/ffbinaries">downloader app</a> in Node.js which makes it easy to automatically download the right binaries for your platform or to integrate into your build process.</p>
+    <h1>Download binaries for ffmpeg, ffprobe, ffserver and ffplay</h1>
+    <p><img src="https://img.shields.io/github/downloads/vot/ffbinaries-prebuilt/total.svg" /></p>
 
     <br />
 
-    <h2>API Endpoints</h2>
+    <p><strong>ffbinaries</strong> provides links to precompiled binaries for ffmpeg, ffprobe, ffserver and ffplay.</p>
+
+    <p>Binaries are available for Windows, Mac and Linux. You can grab what you need
+      from <strong><a href="/downloads">Downloads</a></strong> page.</p>
+
+    <br /><br />
+
+    <h2>Using ffbinaries in your project</h2>
+
+    <p>You can use it through
+      <strong><a target="_blank" href="https://www.npmjs.com/package/ffbinaries">ffbinaries Node.js module</a></strong>
+      which makes it easy to automatically download the right binaries for your platform or to integrate into your build process.</p>
+
+    <p>You can also connect directly to the <strong><a href="/api">HTTP API</a></strong>
+      to integrate it yourself in your projects.</p>
+
     <br />
 
-    <ul class="well list-unstyled">
-      <li><a href="/api/v1/versions">/api/v1</a> Lists all available ffmpeg versions</li>
-      <br />
-      <li><a href="/api/v1/version/latest">/api/v1/version/latest</a> Serves the latest available version of ffmpeg</li>
-      <br />
-      <li><a href="/api/v1/version/3.2">/api/v1/version/3.2</a> Permalink to a specific version: 3.2</li>
-    </ul>
 
   </div>
 

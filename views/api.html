@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>ffbinaries</title>
+  <title>Download binaries for ffmpeg, ffprobe, ffserver and ffplay (cross-platform: Windows, Mac, Linux)</title>
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -23,37 +23,22 @@
 
   <br /><br /><br />
 
-
-
   <div class="container">
-    <div class="col-md-6 col-lg-4">
-      <h2>{{githubTotal}} Binaries Downloaded</h2>
+    <h1>ffbinaries API Endpoints</h1>
+    <br />
+
+    <p>All calls to this API are just regular HTTP GETs,
+    i.e. <code>curl http://ffbinaries.com/api/v1/version/latest</code>.</p>
+
+    <ul class="well list-unstyled">
+      <li><a href="/api/v1/versions">/api/v1</a> Lists all available ffmpeg versions</li>
       <br />
-      {{github}}
-    </div>
-
-    <div class="col-md-6 col-lg-4">
-      <h2>{{logApiRequestsTotal}} API Requests</h2>
+      <li><a href="/api/v1/version/latest">/api/v1/version/latest</a> Serves the latest available version of ffmpeg</li>
       <br />
-      {{logApiRequests}}
-    </div>
+      <li><a href="/api/v1/version/3.2">/api/v1/version/3.2</a> Permalink to a specific version: 3.2</li>
+    </ul>
 
-    <div class="col-md-6 col-lg-4">
-      <h2>{{logPageRequestsTotal}} Page Views</h2>
-      <br />
-      {{logPageRequests}}
-    </div>
-
-
-
-    <br /><br /><br /><br />
   </div>
-
-  <style>
-    ul.stats {padding: 0; margin: 0; list-style: none}
-    ul.stats li {line-height: 26px; padding: 0; margin: 0; list-style: none}
-    ul.stats .count {width: 50px; text-align: right; font-size: 15px; font-weight: bold; display: inline-block}
-  </style>
 
 </body>
 </html>
