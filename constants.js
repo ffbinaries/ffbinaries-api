@@ -8,5 +8,5 @@ module.exports = {
   BASEURL: 'http://ffbinaries.com',
   // BASEURL: 'http://localhost:3000',
 
-  CURRENT_VERSION: '3.2'
+  CURRENT_VERSION: '3.4'
 }
