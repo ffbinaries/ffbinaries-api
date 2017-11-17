@@ -181,9 +181,11 @@ server.route({
         var ghDataRtn = {
           total: 0
         };
-        _.each(ghData[0].assets, function (val) {
-          ghDataRtn[val.name] = val.download_count;
-          ghDataRtn.total += val.download_count;
+        _.each(ghData, function (release) {
+          _.each(release.assets, function (val) {
+            ghDataRtn[val.name] = val.download_count;
+            ghDataRtn.total += val.download_count;
+          });
         });
 
         // var ghDataString = JSON.stringify(ghDataRtn, null, 2);
