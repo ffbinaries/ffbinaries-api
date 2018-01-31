@@ -2,26 +2,17 @@ const path = require('path');
 const _ = require('lodash');
 const fse = require('fs-extra');
 const Hapi = require('hapi');
-const constants = require('./constants')
+const config = require('./config')
 const requestLib = require('request');
 
-const VIEWSDIR = constants.VIEWSDIR;
-const JSONDIR = constants.JSONDIR
-const LOGFILE = constants.LOGFILE;
-const BASEURL = constants.BASEURL;
-const CURRENT_VERSION = constants.CURRENT_VERSION;
+const VIEWSDIR = config.paths.views;
+const JSONDIR = config.paths.json;
+const LOGFILE = config.paths.logfile;
 
 let GH_CACHE;
 
-// ensure request log file
-try {
-  fse.accessSync(LOGFILE);
-} catch (e) {
-  fse.writeJsonSync(LOGFILE, {});
-}
-
 const server = new Hapi.Server();
-server.connection({port: 3000});
+server.connection({port: config.appPort});
 
 function _currentTime () {
   const now = new Date();
@@ -47,8 +38,8 @@ function _logRequest(url) {
 // TODO: read https://api.github.com/repos/vot/ffbinaries-prebuilt/releases
 // to get stats + cache for 10 min
 function _replacePlaceholders(data, payload) {
-  data = data.replace(/%%BASEURL%%/g, BASEURL);
-  data = data.replace(/%%CURRENT_VERSION%%/g, CURRENT_VERSION);
+  data = data.replace(/%%BASEURL%%/g, config.baseUrl);
+  data = data.replace(/%%CURRENT_VERSION%%/g, config.currentVersion);
 
   if (payload) {
     _.each(payload, function (val, key) {
@@ -267,7 +258,7 @@ server.route({
   method: 'GET',
   path: '/api/v1/version/latest',
   handler: function (request, reply) {
-    reply(_getJson(CURRENT_VERSION));
+    reply(_getJson(config.currentVersion));
   }
 });
 
