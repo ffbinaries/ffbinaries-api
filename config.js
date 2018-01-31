@@ -2,7 +2,7 @@ const _ = require('lodash');
 const path = require('path');
 const fse = require('fs-extra');
 const os = require('os');
-// const hbs = require('hbs');
+const hbs = require('hbs');
 const clarg = require('clarg');
 const clOpts = clarg().opts;
 
@@ -20,11 +20,10 @@ const networks = {
 };
 
 // fixing for DO setup
-const privateInterface = os.networkInterfaces()['eth1'];
-if (privateInterface) {
-  networks.private = _.map(_.find(privateInterface, {family: 'IPv4'}), 'address');
-}
-
+// const privateInterface = os.networkInterfaces()['eth1'];
+// if (privateInterface) {
+//   networks.private = _.map(_.find(privateInterface, {family: 'IPv4'}), 'address');
+// }
 
 const appNetworkInterface = networks[appNetwork];
 
@@ -39,18 +38,11 @@ const config = {
     json: path.join(__dirname, 'json'),
     logfile: path.join(__dirname, 'requestlog.json')
   },
-
-  // VIEWSDIR: path.join(__dirname, 'views'),
-  // JSONDIR: path.join(__dirname, 'json'),
-  // LOGFILE: path.join(__dirname, 'requestlog.json'),
-  // BASEURL: 'http://ffbinaries.com',
-  // BASEURL: 'http://localhost:3000',
+  views: {
+    engine: hbs,
+    partialsPath: path.join(__dirname, 'views/partials')
+  },
   currentVersion: '3.4'
-};
-
-config.views = {
-  // engine: hbs,
-  partialsPath: config.paths.views + '/partials'
 };
 
 // ensure request log file
