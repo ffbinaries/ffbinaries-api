@@ -2,6 +2,7 @@ const requestLib = require('request');
 const path = require('path');
 const fse = require('fs-extra');
 const _ = require('lodash');
+const express = require('express');
 const config = require('../config');
 const fmt = require('../lib/fmt');
 
@@ -60,7 +61,7 @@ function getFfmpegVersions() {
 
 
 function routes(app) {
-  // server.ext('onPreResponse', preResponse);
+  app.use('/public', express.static('public'));
 
   // Info pages
   app.get('*', function (req, res, next) {

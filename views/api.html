@@ -1,18 +1,36 @@
 
-    <h1>ffbinaries API Endpoints</h1>
+    <h1>API Endpoints</h1>
+
     <br />
 
-    <p>All calls to this API are just regular HTTP GETs,
-    i.e. <code>curl http://ffbinaries.com/api/v1/version/latest</code>.</p>
+    <table class="table" width="100%">
+      <tr>
+        <td>
+          <span class="label label-primary">GET</span>
+          <code>{{baseUrl}}/api/v1/versions</code>
+        </td>
+        <td>
+          Lists all available ffmpeg versions
+        </td>
+      </tr>
 
-    <ul class="well list-unstyled">
-      <li><a href="{{baseUrl}}/api/v1/versions">/api/v1</a> Lists all available ffmpeg versions</li>
-      <br />
-      <li><a href="{{baseUrl}}/api/v1/version/latest">/api/v1/version/latest</a> Serves the latest available version of ffmpeg (currently 3.4)</li>
-      <br />
-      <li><a href="{{baseUrl}}/api/v1/version/3.2">/api/v1/version/3.2</a> Permalink to version 3.2</li>
-      <br />
-      <li><a href="{{baseUrl}}/api/v1/version/3.3">/api/v1/version/3.3</a> Permalink to version 3.3</li>
-      <br />
-      <li><a href="{{baseUrl}}/api/v1/version/3.4">/api/v1/version/3.4</a> Permalink to version 3.4</li>
-    </ul>
+      <tr>
+        <td>
+          <span class="label label-primary">GET</span>
+          <code>{{baseUrl}}/api/v1/version/latest</code>
+        </td>
+        <td>
+          Serves the latest available version of ffmpeg (currently set to "3.4")
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="label label-primary">GET</span>
+          <code>{{baseUrl}}/api/v1/version/:version</code>
+        </td>
+        <td>
+          Permalink to a specified version ("3.2", "3.3", "3.4")
+        </td>
+      </tr>
+    </table>
