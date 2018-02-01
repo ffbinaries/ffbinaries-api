@@ -3,31 +3,17 @@
 This is the small API running on ffbinaries.com
 
 
-# Components
-
-The components of the ffmpeg suite are: ffmpeg, ffprobe, ffserver and ffplay.
-
-|          | Mac | Linux | Windows |
-|----------|-----|-------|---------|
-| ffmpeg   | v   | v     | v       |
-| ffprobe  | v   | v     | v       |
-| ffserver | v   | v     |         |
-| ffplay   | v   | v*    | v       |
-
-(* Only linux-32 and linux-64 builds are available for ffplay)
-
-
 ## Running the server locally
 
-You can run a local copy of it with `node .`.
+You can run a local copy of the API with `node .`.
 
-You may want to update the `BASEDIR` in `config.js` for API to serve correct links.
+Specify port with `-port`, networking (local/private/public) with `-network`
+and base url with `-url`.
 
 
 ## Command line client
 
 There's a CLI client available for this at https://www.npmjs.com/package/ffbinaries
-
 
 ## Binaries used
 

@@ -65,6 +65,7 @@ function routes(app) {
   // Info pages
   app.get('*', function (req, res, next) {
     _logRequest(req.url);
+    res.locals.baseUrl = config.baseUrl;
     next();
   });
 

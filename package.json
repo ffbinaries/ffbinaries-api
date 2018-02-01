@@ -3,7 +3,9 @@
   "version": "1.1.0",
   "description": "Web API running on ffbinaries.com",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node index.js"
+  },
   "author": "Vot Z <http://vot-z.com>",
   "license": "ISC",
   "dependencies": {
