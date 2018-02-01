@@ -1,36 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>ffbinaries</title>
-  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-</head>
-<body>
-
-  <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <ul class="nav navbar-nav">
-        <li><a class="navbar-brand" href="/">ffbinaries</a></li>
-        <li><a href="/downloads">Downloads</a></li>
-        <li><a href="/api">API</a></li>
-        <li><a href="/readme">Readme</a></li>
-        <li><a href="/stats">Stats</a></li>
-        <li><a href="https://www.npmjs.com/package/ffbinaries" target="_blank">Node.js module</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <br /><br /><br />
-
-
-
-  <div class="container">
     <h2>Software versions</h2>
 
-    <p>Available versions of ffmpeg suite: 3.2, 3.3, 3.4</p>
-    <p>Version of this API: 1.0.4</p>
-    <p>Version of Node module: 1.0.3</p>
+    <p><strong>Available ffmpeg versions:</strong> {{versions.ffmpeg}}</p>
+    <p><strong>API:</strong> {{versions.api}}</p>
+    <p><strong>Node module:</strong> {{versions.module}}</p>
 
 
     <h2>Binaries provided</h2>
@@ -143,14 +115,3 @@
     <a href="http://ffmpeg.org/legal.html" target="_blank">http://ffmpeg.org/legal.html</a>.</p>
 
     <br /><br /><br /><br />
-  </div>
-
-  <style>
-    @media (max-width: 767px) {
-      .navbar {position:relative}
-      .navbar-brand {float: none}
-    }
-  </style>
-
-</body>
-</html>

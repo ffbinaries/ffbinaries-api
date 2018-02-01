@@ -1,64 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>ffbinaries</title>
-  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-</head>
-<body>
-
-  <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <ul class="nav navbar-nav">
-        <li><a class="navbar-brand" href="/">ffbinaries</a></li>
-        <li><a href="/downloads">Downloads</a></li>
-        <li><a href="/api">API</a></li>
-        <li><a href="/readme">Readme</a></li>
-        <li><a href="/stats">Stats</a></li>
-        <li><a href="https://www.npmjs.com/package/ffbinaries" target="_blank">Node.js module</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <br /><br /><br />
-
-
-
   <div class="container">
-    <div class="col-md-6 col-lg-4">
-      <h2>{{githubTotal}} Binaries Downloaded</h2>
+    <div class="col-sm-12 col-md-6 col-md-offset-3">
+      <h2>{{github.total}} Binaries Downloaded</h2>
       <br />
-      {{github}}
-    </div>
 
-    <div class="col-md-6 col-lg-4">
-      <h2>{{logApiRequestsTotal}} API Requests</h2>
-      <br />
-      {{logApiRequests}}
-    </div>
+      <ul class="stats">
 
-    <div class="col-md-6 col-lg-4">
-      <h2>{{logPageRequestsTotal}} Page Views</h2>
-      <br />
-      {{logPageRequests}}
-    </div>
+      {{#each github}}
+      <li>
+        <span class="count">{{this}}</span>
+        <code>{{@key}}</code>
+      </li>
+      {{/each}}
 
+      </ul>
+
+    </div>
 
 
     <br /><br /><br /><br />
-  </div>
-
-  <style>
-    ul.stats {padding: 0; margin: 0; list-style: none}
-    ul.stats li {line-height: 26px; padding: 0; margin: 0; list-style: none}
-    ul.stats .count {width: 50px; text-align: right; font-size: 15px; font-weight: bold; display: inline-block}
-
-    @media (max-width: 767px) {
-      .navbar {position:relative}
-      .navbar-brand {float: none}
-    }
-  </style>
-
-</body>
-</html>

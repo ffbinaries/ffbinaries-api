@@ -21,7 +21,7 @@ The components of the ffmpeg suite are: ffmpeg, ffprobe, ffserver and ffplay.
 
 You can run a local copy of it with `node .`.
 
-You may want to update the `BASEDIR` in `constants.js` for API to serve correct links.
+You may want to update the `BASEDIR` in `config.js` for API to serve correct links.
 
 
 ## Command line client

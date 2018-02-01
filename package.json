@@ -1,14 +1,16 @@
 {
   "name": "ffbinaries-api",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Web API running on ffbinaries.com",
   "main": "index.js",
   "scripts": {},
   "author": "Vot Z <http://vot-z.com>",
   "license": "ISC",
   "dependencies": {
+    "clarg": "0.0.4",
+    "express": "^4.16.2",
     "fs-extra": "^1.0.0",
-    "hapi": "^15.2.0",
+    "hbs": "^4.0.1",
     "lodash": "^4.16.6",
     "request": "^2.79.0"
   }
