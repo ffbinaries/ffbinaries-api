@@ -1,128 +1,57 @@
     <h1>Download binary files for ffmpeg, ffprobe, ffserver and ffplay</h1>
 
     <br />
+    <br />
 
-    <h2>ffmpeg 3.2 binaries</h2>
+    {{#each versions}}
+      <h2>ffmpeg {{this.version}} binaries</h2>
 
-    <table class="table table-hover">
-      <tr>
-        <th></th>
-        <th>ffmpeg</th>
-        <th>ffplay</th>
-        <th>ffprobe</th>
-        <th>ffserver</th>
-      </tr>
+      <table class="table table-hover text-center">
+        <tr>
+          <th></th>
+          <th class="text-center">ffmpeg</th>
+          <th class="text-center">ffprobe</th>
+          <th class="text-center">ffplay</th>
+          <th class="text-center">ffserver</th>
+        </tr>
 
-      <tr>
-        <th>Windows (32 bit)</th>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffmpeg-3.2-win-32.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffplay-3.2-win-32.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffprobe-3.2-win-32.zip">Download</a>
-        </td>
-        <td>
-          -
-        </td>
-      </tr>
+        {{#each this.bin}}
+        <tr>
+          <th>{{@key}}</th>
+          <td>
+            {{#if this.ffmpeg}}
+              <a class="btn btn-sm btn-default" href="{{this.ffmpeg}}">Download</a>
+            {{else}}
+              -
+            {{/if}}
+          </td>
+          <td>
+            {{#if this.ffprobe}}
+              <a class="btn btn-sm btn-default" href="{{this.ffprobe}}">Download</a>
+            {{else}}
+              -
+            {{/if}}
+          </td>
+          <td>
+            {{#if this.ffplay}}
+              <a class="btn btn-sm btn-default" href="{{this.ffplay}}">Download</a>
+            {{else}}
+              -
+            {{/if}}
+          </td>
+          <td>
+            {{#if this.ffserver}}
+              <a class="btn btn-sm btn-default" href="{{this.ffserver}}">Download</a>
+            {{else}}
+              -
+            {{/if}}
+          </td>
+        </tr>
+        {{/each}}
 
-      <tr>
-        <th>Windows (64 bit)</th>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffmpeg-3.2-win-64.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffplay-3.2-win-64.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffprobe-3.2-win-64.zip">Download</a>
-        </td>
-        <td>
-          -
-        </td>
-      </tr>
+      </table>
 
-      <tr>
-        <th>Linux (32 bit)</th>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffmpeg-3.2-linux-32.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffplay-3.2.2-linux-32.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffprobe-3.2-linux-32.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffserver-3.2-linux-32.zip">Download</a>
-        </td>
-      </tr>
-
-      <tr>
-        <th>Linux (64 bit)</th>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffmpeg-3.2-linux-64.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffplay-3.2.2-linux-64.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffprobe-3.2-linux-64.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffserver-3.2-linux-64.zip">Download</a>
-        </td>
-      </tr>
-
-      <tr>
-        <th>Linux (ARM HF)</th>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffmpeg-3.2-linux-armhf.zip">Download</a>
-        </td>
-        <td>
-          -
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffprobe-3.2-linux-armhf.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffserver-3.2-linux-armhf.zip">Download</a>
-        </td>
-      </tr>
-
-      <tr>
-        <th>Linux (ARM EL)</th>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffmpeg-3.1.4-linux-armel.zip">Download</a>
-        </td>
-        <td>
-          -
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffprobe-3.1.4-linux-armel.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffserver-3.1.4-linux-armel.zip">Download</a>
-        </td>
-      </tr>
-
-      <tr>
-        <th>OS X (64 bit)</th>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffmpeg-3.2-osx-64.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffplay-3.2-osx-64.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffprobe-3.2-osx-64.zip">Download</a>
-        </td>
-        <td>
-          <a class="btn btn-sm btn-default" href="https://github.com/vot/ffbinaries-prebuilt/releases/download/v3.2/ffserver-3.2-osx-64.zip">Download</a>
-        </td>
-      </tr>
-
-    </table>
+      <br />
+      <br />
+      <br />
+    {{/each}}

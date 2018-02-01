@@ -3,25 +3,26 @@ const path = require('path');
 const fse = require('fs-extra');
 const _ = require('lodash');
 const config = require('../config');
+const fmt = require('../lib/fmt');
 
 let GH_CACHE;
-//
-// // TODO: Don't replace dots in paths
-// // TODO: Aggregate 404s
-// function _logRequest(url) {
-//   if (url === '/favicon.ico' || url === '/robots.txt') {
-//     return;
-//   }
-//   const key = url.replace('.', '-') + '.' + fmt.time();
-//   const LOGFILE = config.paths.logfile;
-//
-//   const data = fse.readJsonSync(LOGFILE) || {};
-//   const currentCount = _.get(data, key) || 0;
-//   _.set(data, key, currentCount + 1);
-//
-//   fse.writeJsonSync(LOGFILE, data);
-// }
-//
+
+// TODO: Don't replace dots in paths
+// TODO: Aggregate 404s
+function _logRequest(url) {
+  if (url === '/favicon.ico' || url === '/robots.txt') {
+    return;
+  }
+  const key = url.replace('.', '-') + '.' + fmt.date();
+  const LOGFILE = config.paths.logfile;
+
+  const data = fse.readJsonSync(LOGFILE) || {};
+  const currentCount = _.get(data, key) || 0;
+  _.set(data, key, currentCount + 1);
+
+  fse.writeJsonSync(LOGFILE, data);
+}
+
 // // TODO: read https://api.github.com/repos/vot/ffbinaries-prebuilt/releases
 
 function _replacePlaceholders(data, payload) {
@@ -51,27 +52,48 @@ function _getJson(file) {
   return data;
 }
 
-// const preResponse = function (request, reply) {
-//   _logRequest(request.url.path);
-//   return reply.continue();
-// };
-
+function getFfmpegVersions() {
+  const jsonIndex = _getJson('index');
+  const versions = Object.keys(jsonIndex.versions);
+  return _.without(versions, 'latest');
+}
 
 
 function routes(app) {
   // server.ext('onPreResponse', preResponse);
 
   // Info pages
+  app.get('*', function (req, res, next) {
+    _logRequest(req.url);
+    next();
+  });
+
   app.get('/', function (req, res) {
     res.render('home');
   });
 
   app.get('/readme', function (req, res) {
-    res.render('readme');
+    const data = {
+      versions: {
+        api: require('../package.json').version,
+        module: '1.0.3',
+        ffmpeg: getFfmpegVersions().join(', ')
+      }
+    };
+    res.render('readme', data);
   });
 
   app.get('/downloads', function (req, res) {
-    res.render('downloads');
+    const data = {
+      versions: {}
+    };
+
+    var versions = getFfmpegVersions();
+    _.each(versions, function (v) {
+      data.versions[v] = _getJson(v);
+    });
+
+    res.render('downloads', data);
   });
 
 
@@ -116,49 +138,8 @@ function routes(app) {
 
 
   app.get('/stats', function (req, res) {
-    const requestLog = _getJson('../requestlog');
-    let requestMap = {};
-    _.each(requestLog, function (val, key) {
-      requestMap[key] = _.sum(_.map(val));
-    });
-    var pagePaths = [
-      "/",
-      "/stats",
-      "/readme"
-    ];
-
-    var logPageRequests = _.pick(requestMap, pagePaths);
-
-    var logApiRequests = _.pickBy(requestMap, function (v, k) {
-      return k.startsWith('/api')
-    });
-
-    function objectToHtml (object) {
-      var rtn = '<ul class="stats">';
-
-      _.each(object, function (val, k) {
-        rtn += '<li>';
-        rtn += '<span class="count">' + val + '</span> ';
-        rtn += '<code>' + k + '</code>';
-        rtn += '</li>';
-      });
-
-      rtn += '</ul>';
-      return rtn;
-    }
-
-    let payload = {
-      // logApiRequests: JSON.stringify(logApiRequests, null, 2),
-      logApiRequests: objectToHtml(logApiRequests),
-      logApiRequestsTotal: _.sum(_.map(logApiRequests)),
-
-      // logPageRequests: JSON.stringify(logPageRequests, null, 2),
-      logPageRequests: objectToHtml(logPageRequests),
-      logPageRequestsTotal: _.sum(_.map(logPageRequests)),
-    };
-
     if (GH_CACHE && GH_CACHE.expiration > Date.now()) {
-      payload.github = objectToHtml(GH_CACHE.data);
+      payload.github = GH_CACHE.data;
       payload.githubTotal = GH_CACHE.data.total;
       return res.render('stats', payload);
     }
@@ -189,8 +170,7 @@ function routes(app) {
           data: ghDataRtn
         }
 
-        payload.github = objectToHtml(ghDataRtn);
-        payload.githubTotal = ghDataRtn.total;
+        payload.github = ghDataRtn;
       }
 
       res.render('stats', payload);
