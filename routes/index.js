@@ -133,7 +133,11 @@ function routes(app) {
   });
 
   app.get('/api/v1/version/:version', function (req, res) {
-    res.json(_getJson(req.params.version));
+    var data = _getJson(req.params.version);
+    if (data === '404') {
+      return res.status(404).end();
+    }
+    res.json(data);
   });
 
 
