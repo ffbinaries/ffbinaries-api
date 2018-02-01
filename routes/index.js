@@ -115,86 +115,86 @@ function routes(app) {
 
 
 
-    app.get('/stats', function (req, res) {
-        const requestLog = _getJson('../requestlog');
-        let requestMap = {};
-        _.each(requestLog, function (val, key) {
-          requestMap[key] = _.sum(_.map(val));
-        });
-        var pagePaths = [
-          "/",
-          "/stats",
-          "/readme"
-        ];
+  app.get('/stats', function (req, res) {
+    const requestLog = _getJson('../requestlog');
+    let requestMap = {};
+    _.each(requestLog, function (val, key) {
+      requestMap[key] = _.sum(_.map(val));
+    });
+    var pagePaths = [
+      "/",
+      "/stats",
+      "/readme"
+    ];
 
-        var logPageRequests = _.pick(requestMap, pagePaths);
+    var logPageRequests = _.pick(requestMap, pagePaths);
 
-        var logApiRequests = _.pickBy(requestMap, function (v, k) {
-          return k.startsWith('/api')
-        });
+    var logApiRequests = _.pickBy(requestMap, function (v, k) {
+      return k.startsWith('/api')
+    });
 
-        function objectToHtml (object) {
-          var rtn = '<ul class="stats">';
+    function objectToHtml (object) {
+      var rtn = '<ul class="stats">';
 
-          _.each(object, function (val, k) {
-            rtn += '<li>';
-            rtn += '<span class="count">' + val + '</span> ';
-            rtn += '<code>' + k + '</code>';
-            rtn += '</li>';
-          });
+      _.each(object, function (val, k) {
+        rtn += '<li>';
+        rtn += '<span class="count">' + val + '</span> ';
+        rtn += '<code>' + k + '</code>';
+        rtn += '</li>';
+      });
 
-          rtn += '</ul>';
-          return rtn;
-        }
+      rtn += '</ul>';
+      return rtn;
+    }
 
-        let payload = {
-          // logApiRequests: JSON.stringify(logApiRequests, null, 2),
-          logApiRequests: objectToHtml(logApiRequests),
-          logApiRequestsTotal: _.sum(_.map(logApiRequests)),
+    let payload = {
+      // logApiRequests: JSON.stringify(logApiRequests, null, 2),
+      logApiRequests: objectToHtml(logApiRequests),
+      logApiRequestsTotal: _.sum(_.map(logApiRequests)),
 
-          // logPageRequests: JSON.stringify(logPageRequests, null, 2),
-          logPageRequests: objectToHtml(logPageRequests),
-          logPageRequestsTotal: _.sum(_.map(logPageRequests)),
+      // logPageRequests: JSON.stringify(logPageRequests, null, 2),
+      logPageRequests: objectToHtml(logPageRequests),
+      logPageRequestsTotal: _.sum(_.map(logPageRequests)),
+    };
+
+    if (GH_CACHE && GH_CACHE.expiration > Date.now()) {
+      payload.github = objectToHtml(GH_CACHE.data);
+      payload.githubTotal = GH_CACHE.data.total;
+      return res.render('stats', payload);
+    }
+
+    const requestOpts = {
+      url: 'https://api.github.com/repos/vot/ffbinaries-prebuilt/releases',
+      headers: {
+        'User-Agent': 'ffbinaries.com'
+      }
+    }
+
+    requestLib(requestOpts, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var ghData = JSON.parse(body);
+        var ghDataRtn = {
+          total: 0
         };
+        _.each(ghData, function (release) {
+          _.each(release.assets, function (val) {
+            ghDataRtn[val.name] = val.download_count;
+            ghDataRtn.total += val.download_count;
+          });
+        });
 
-        if (GH_CACHE && GH_CACHE.expiration > Date.now()) {
-          payload.github = objectToHtml(GH_CACHE.data);
-          payload.githubTotal = GH_CACHE.data.total;
-          return res.render('stats', payload);
+        // var ghDataString = JSON.stringify(ghDataRtn, null, 2);
+        GH_CACHE = {
+          expiration: Date.now() + (60 * 1000),
+          data: ghDataRtn
         }
 
-        const requestOpts = {
-          url: 'https://api.github.com/repos/vot/ffbinaries-prebuilt/releases',
-          headers: {
-            'User-Agent': 'ffbinaries.com'
-          }
-        }
+        payload.github = objectToHtml(ghDataRtn);
+        payload.githubTotal = ghDataRtn.total;
+      }
 
-        requestLib(requestOpts, function (error, response, body) {
-          if (!error && response.statusCode == 200) {
-            var ghData = JSON.parse(body);
-            var ghDataRtn = {
-              total: 0
-            };
-            _.each(ghData, function (release) {
-              _.each(release.assets, function (val) {
-                ghDataRtn[val.name] = val.download_count;
-                ghDataRtn.total += val.download_count;
-              });
-            });
-
-            // var ghDataString = JSON.stringify(ghDataRtn, null, 2);
-            GH_CACHE = {
-              expiration: Date.now() + (60 * 1000),
-              data: ghDataRtn
-            }
-
-            payload.github = objectToHtml(ghDataRtn);
-            payload.githubTotal = ghDataRtn.total;
-          }
-
-          res.render('stats', payload);
-        })
+      res.render('stats', payload);
+    });
   });
 }
 
