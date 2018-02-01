@@ -139,9 +139,7 @@ function routes(app) {
 
   app.get('/stats', function (req, res) {
     if (GH_CACHE && GH_CACHE.expiration > Date.now()) {
-      payload.github = GH_CACHE.data;
-      payload.githubTotal = GH_CACHE.data.total;
-      return res.render('stats', payload);
+      return res.render('stats', {github: GH_CACHE.data});
     }
 
     const requestOpts = {
@@ -164,16 +162,13 @@ function routes(app) {
           });
         });
 
-        // var ghDataString = JSON.stringify(ghDataRtn, null, 2);
         GH_CACHE = {
           expiration: Date.now() + (60 * 1000),
           data: ghDataRtn
         }
-
-        payload.github = ghDataRtn;
       }
 
-      res.render('stats', payload);
+      res.render('stats', {github: GH_CACHE.data});
     });
   });
 }
