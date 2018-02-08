@@ -24,7 +24,7 @@ function _logRequest(url) {
   fse.writeJsonSync(LOGFILE, data);
 }
 
-// // TODO: read https://api.github.com/repos/vot/ffbinaries-prebuilt/releases
+// TODO: read https://api.github.com/repos/vot/ffbinaries-prebuilt/releases
 
 function _replacePlaceholders(data, payload) {
   data = data.replace(/%%BASEURL%%/g, config.baseUrl);
@@ -71,6 +71,7 @@ function routes(app) {
   });
 
   app.get('/', function (req, res) {
+    res.locals.isHomepage = true;
     res.render('home');
   });
 
