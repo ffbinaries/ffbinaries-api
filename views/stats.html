@@ -1,22 +1,40 @@
-  <div class="container">
-    <div class="col-sm-12 col-md-6 col-md-offset-3">
-      <h1>{{github.total}} Binaries Downloaded</h1>
-      <br />
-      <hr />
-      <br />
+<h1>{{github.total}} Binaries Downloaded</h1>
+<hr />
 
-      <ul class="stats">
+<div class="row">
 
-      {{#each github}}
-      <li>
-        <span class="count">{{this}}</span>
-        <code>{{@key}}</code>
-      </li>
-      {{/each}}
+  <div class="col-sm-12 col-md-3">
+    <h2>Milestones</h2>
 
-      </ul>
+    <p><strong>21st March 2018</strong></p>
+    <p>Total count of binaries delivered reached 200,000.</p>
 
-    </div>
+    <br />
+
+    <p><strong>18th February 2018</strong></p>
+    <p>Total count of binaries delivered reached 150,000.</p>
+
+    <br />
+
+    <p><strong>20th January 2018</strong></p>
+    <p>Total count of binaries delivered reached 100,000.</p>
+  </div>
+
+  <div class="col-sm-12 col-md-9">
+    <h2>Detailed stats</h2>
+
+    <ul class="stats">
+
+    {{#each github}}
+    <li>
+      <span class="count">{{this}}</span>
+      <code>{{@key}}</code>
+    </li>
+    {{/each}}
+    </ul>
+  </div>
+
+</div>
 
 
-    <br /><br /><br /><br />
+  <br /><br />

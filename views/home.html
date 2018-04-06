@@ -1,11 +1,14 @@
 
   <div class="container">
     <div class="jumbotron">
-      <h1>Download binary files for<br>ffmpeg, ffprobe, ffserver and ffplay</h1>
+      <h1 style="font-size: 36px; margin-top:0">
+        ffbinaries<span style="font-weight:200">.com</span>
+      </h1>
 
-      <br>
+      <h2 style="margin: 0 0 30px">Download binary files for ffmpeg, ffprobe, ffserver and ffplay</h2>
 
-      <p><strong>ffbinaries</strong> provides statically linked binary files (executables) for ffmpeg, ffprobe, ffserver and ffplay.</p>
+
+      <!-- <p>ffbinaries provides statically linked binary files (executables) for ffmpeg, ffprobe, ffserver and ffplay.</p> -->
 
       <p>You can grab what you need
         from <strong><a href="http://ffbinaries.com/downloads">Downloads</a></strong> page,
@@ -21,74 +24,49 @@
         <a href="{{baseUrl}}/stats">
           <img src="https://img.shields.io/github/downloads/vot/ffbinaries-prebuilt/total.svg" height="22">
         </a>
-
       </p>
 
     </div>
   </div>
 
 <br />
-<br />
-<br />
-<br />
-<br />
+
 
   <div class="container">
-    <h2>Components availability</h2>
-    <p>Please consult <a href="/downloads">Downloads page</a> for availability of components.</p>
-    <p>For example to use ffplay on Linux you'll have to stick to version 3.2 and even then it's available only for x86 and x86-64 platforms.</p>
-    <p>I will be looking into compiling the binaries myself in the long term to provide full coverage of components as well as versions with and without proprietary codecs.</p>
-    <p>Get in touch via this <a href="https://github.com/vot/ffbinaries-prebuilt" target="_blank">repo's issues or pull requests</a> if you'd like to help.</p>
+    <div class="row">
 
-    <br />
-    <br />
-    <br />
+      <div class="col-sm-12 col-md-8">
+        <h2>Updates</h2>
 
-    <h2>Updates</h2>
+        <p><strong>19th March 2018</strong></p>
+        <p>5 hour outage due to overzealous firewall rules kicking in after automated restart of the servers.
+          <br />
+          Switched on CloudFlare Always Online to prevent this happening in the future.</p>
 
-    <p><strong>21st March 2018</strong></p>
-    <p>Total count of binaries delivered reached 200,000.</p>
+        <br />
 
-    <br />
+        <p><strong>1st February 2018</strong></p>
+        <p>Re-written API code.<br />Better templating system, listing all versions on the Downloads page, added HTTPS.</p>
 
-    <p><strong>19th March 2018</strong></p>
-    <p>5 hour outage due to overzealous firewall rules kicking in after automated restart of the servers. Switched on CloudFlare Always Online to prevent this happening in the future.</p>
+        <br />
 
-    <br />
+        <p><strong>18th November 2017</strong></p>
+        <p>Added support for versions 3.3 and 3.4 of ffmpeg suite.<br />
+          You can still use previous versions by specifying the option in API or node module.</p>
 
-    <p><strong>18th February 2018</strong></p>
-    <p>Total count of binaries delivered reached 150,000.</p>
+        <br />
 
-    <br />
+        <p><strong>13th November 2016</strong></p>
+        <p>Project started to facilitate delivery of statically linked ffmpeg to an Electron project.</p>
+      </div>
 
-    <p><strong>1st February 2018</strong></p>
-    <p>Re-written API code.<br />Better templating system, listing all versions on the Downloads page, added HTTPS.</p>
+      <div class="col-sm-12 col-md-4">
+        <h2>Components availability</h2>
+        <p>Please consult <a href="/downloads">Downloads page</a> for availability of components.</p>
+        <p>For example to use ffplay on Linux you'll have to stick to version 3.2 and even then it's available only for x86 and x86-64 platforms.</p>
+        <p>I will be looking into compiling the binaries myself in the long term to provide full coverage of components as well as versions with and without proprietary codecs.</p>
+        <p>Get in touch via this <a href="https://github.com/vot/ffbinaries-prebuilt" target="_blank">repo's issues or pull requests</a> if you'd like to help.</p>
+      </div>
 
-    <br />
-
-    <p><strong>20th January 2018</strong></p>
-    <p>Total count of binaries delivered reached 100,000.</p>
-
-    <br />
-
-    <p><strong>18th November 2017</strong></p>
-    <p>Added support for versions 3.3 and 3.4 of ffmpeg suite.<br />
-      You can still use previous versions by specifying the option in API or node module.</p>
-
-    <br />
-
-    <p><strong>13th November 2016</strong></p>
-    <p>Project started to facilitate delivery of statically linked ffmpeg to an Electron project.</p>
+    </div>
   </div>
-
-
-<br />
-<br />
-
-<!--
-  <div class="container">
-    <h2>Help</h2>
-    <p>If you'd like to help I'm looking for someone to write custom scripts to allow compilation of ffmpeg
-    at each release version (starting with 3.x series). Raise an issue in ffbinaries-prebuilt repo to get in touch.</p> 
-  </div>
--->

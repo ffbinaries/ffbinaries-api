@@ -1,5 +1,5 @@
 h1, .jumbotron h1 {font-size: 34px}
-h2 { font-size: 26px; border-bottom: 1px dotted #ccc; font-weight: 200; }
+h2 { font-size: 26px; font-weight: 200; }
 .hero-gradient {background: linear-gradient(#ddd,#eee,#fff,#fff); margin: -10px 0 0; padding: 50px 0 30px;}
 .hero-gradient .jumbotron {background: none; padding: 0; margin: 0;}
 
@@ -7,10 +7,14 @@ ul.stats {padding: 0; margin: 0; list-style: none}
 ul.stats li {line-height: 26px; padding: 0; margin: 0; list-style: none}
 ul.stats .count {width: 50px; text-align: right; font-size: 15px; font-weight: bold; display: inline-block}
 
+.navbar {margin-bottom: 0}
 .navbar .separator {height: 50px; margin: 0 10px; border-right: 1px solid #3c3c3c; border-left: 1px solid #272727;}
 
+body {padding-top: 50px;}
+
 @media (max-width: 767px) {
-  .navbar {position:relative}
+  body {padding-top: 0}
+  .navbar {position: relative}
   .navbar-brand {float: none}
   .navbar .separator {display: none}
 }
