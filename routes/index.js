@@ -160,17 +160,18 @@ function routes(app) {
       if (!error && response.statusCode == 200) {
         var ghData = JSON.parse(body);
         var ghDataRtn = {
-          total: 0
+          total: 0,
+          raw: {}
         };
         _.each(ghData, function (release) {
           _.each(release.assets, function (val) {
-            ghDataRtn[val.name] = val.download_count;
+            ghDataRtn.raw[val.name] = val.download_count;
             ghDataRtn.total += val.download_count;
           });
         });
 
         GH_CACHE = {
-          expiration: Date.now() + (60 * 1000),
+          expiration: Date.now() + (30 * 1000),
           data: ghDataRtn
         }
       }

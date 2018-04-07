@@ -9,6 +9,9 @@ function startApp () {
 
   // register hbs
   const hbs = config.views.engine;
+  hbs.registerHelper('toLocaleString', function(num) {
+    return num && num.toLocaleString ? num.toLocaleString() : '';
+  });
   hbs.registerPartials(config.views.partialsPath);
   app.engine('html', hbs.__express);
   app.set('view engine', 'html');

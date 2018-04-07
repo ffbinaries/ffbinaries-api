@@ -1,4 +1,4 @@
-<h1>{{github.total}} Binaries Downloaded</h1>
+<h1>{{toLocaleString github.total}} Binaries Downloaded</h1>
 <hr />
 
 <div class="row">
@@ -6,18 +6,27 @@
   <div class="col-sm-12 col-md-3">
     <h2>Milestones</h2>
 
-    <p><strong>21st March 2018</strong></p>
-    <p>Total count of binaries delivered reached 200,000.</p>
+    <p>
+      <strong>200,000</strong>
+      <br />
+      21st March 2018
+    </p>
 
     <br />
 
-    <p><strong>18th February 2018</strong></p>
-    <p>Total count of binaries delivered reached 150,000.</p>
+    <p>
+      <strong>150,000</strong>
+      <br />
+      18th February 2018
+    </p>
 
     <br />
 
-    <p><strong>20th January 2018</strong></p>
-    <p>Total count of binaries delivered reached 100,000.</p>
+    <p>
+      <strong>100,000</strong>
+      <br />
+      20th January 2018
+    </p>
   </div>
 
   <div class="col-sm-12 col-md-9">
@@ -25,10 +34,10 @@
 
     <ul class="stats">
 
-    {{#each github}}
+    {{#each github.raw}}
     <li>
-      <span class="count">{{this}}</span>
-      <code>{{@key}}</code>
+      <span class="count">{{toLocaleString this}}</span>
+      {{@key}}
     </li>
     {{/each}}
     </ul>
