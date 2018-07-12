@@ -79,7 +79,7 @@ function routes(app) {
     const data = {
       versions: {
         api: require('../package.json').version,
-        module: '1.0.3',
+        module: '1.1.0',
         ffmpeg: getFfmpegVersions().join(', ')
       }
     };

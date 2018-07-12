@@ -3,6 +3,7 @@
     "latest": "%%BASEURL%%/api/v1/version/latest",
     "3.2": "%%BASEURL%%/api/v1/version/3.2",
     "3.3": "%%BASEURL%%/api/v1/version/3.3",
-    "3.4": "%%BASEURL%%/api/v1/version/3.4"
+    "3.4": "%%BASEURL%%/api/v1/version/3.4",
+    "4.0": "%%BASEURL%%/api/v1/version/4.0"
   }
 }
