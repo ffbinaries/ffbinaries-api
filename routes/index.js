@@ -7,6 +7,7 @@ const config = require('../config');
 const fmt = require('../lib/fmt');
 
 let GH_CACHE;
+let NPM_CACHE;
 
 // TODO: Don't replace dots in paths
 // TODO: Aggregate 404s
@@ -24,6 +25,76 @@ function _logRequest(url) {
   fse.writeJsonSync(LOGFILE, data);
 }
 
+function getNpmData (callback) {
+  if (NPM_CACHE && NPM_CACHE.expiration > Date.now()) {
+    return callback(null, NPM_CACHE.data);
+  }
+
+  const requestOpts = {
+    url: 'https://registry.npmjs.org/ffbinaries',
+    headers: {
+      'User-Agent': 'ffbinaries.com'
+    }
+  };
+
+  requestLib(requestOpts, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var parsedData = JSON.parse(body);
+
+      console.log('getNpmData parsedData', parsedData)
+      const npmData = {
+        version: _.get(parsedData, 'dist-tags.latest')
+      };
+
+      // 12 hours seems reasonable
+      NPM_CACHE = {
+        expiration: Date.now() + (12 * 60 * 1000),
+        data: npmData
+      };
+
+      return callback(null, NPM_CACHE.data);
+    }
+  });
+}
+
+
+function getGitHubData(callback) {
+  if (GH_CACHE && GH_CACHE.expiration > Date.now()) {
+    return callback(null, GH_CACHE.data);
+  }
+
+  const requestOpts = {
+    url: 'https://api.github.com/repos/vot/ffbinaries-prebuilt/releases',
+    headers: {
+      'User-Agent': 'ffbinaries.com'
+    }
+  };
+
+  requestLib(requestOpts, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var ghData = JSON.parse(body);
+      var ghDataRtn = {
+        total: 0,
+        raw: {}
+      };
+
+      _.each(ghData, function (release) {
+        _.each(release.assets, function (val) {
+          ghDataRtn.raw[val.name] = val.download_count;
+          ghDataRtn.total += val.download_count;
+        });
+      });
+
+      // 30 seconds
+      GH_CACHE = {
+        expiration: Date.now() + (30 * 1000),
+        data: ghDataRtn
+      };
+
+      return callback(null, GH_CACHE.data);
+    }
+  });
+}
 // TODO: read https://api.github.com/repos/vot/ffbinaries-prebuilt/releases
 
 function _replacePlaceholders(data, payload) {
@@ -76,14 +147,16 @@ function routes(app) {
   });
 
   app.get('/readme', function (req, res) {
-    const data = {
-      versions: {
-        api: require('../package.json').version,
-        module: '1.1.0',
-        ffmpeg: getFfmpegVersions().join(', ')
-      }
-    };
-    res.render('readme', data);
+    getNpmData(function (err, npmData) {
+      const data = {
+        versions: {
+          api: require('../package.json').version,
+          module: npmData.version || '[Problem communicating with npm - try again later.]',
+          ffmpeg: getFfmpegVersions().join(', ')
+        }
+      };
+      res.render('readme', data);
+    });
   });
 
   app.get('/downloads', function (req, res) {
@@ -145,37 +218,7 @@ function routes(app) {
 
 
   app.get('/stats', function (req, res) {
-    if (GH_CACHE && GH_CACHE.expiration > Date.now()) {
-      return res.render('stats', {github: GH_CACHE.data});
-    }
-
-    const requestOpts = {
-      url: 'https://api.github.com/repos/vot/ffbinaries-prebuilt/releases',
-      headers: {
-        'User-Agent': 'ffbinaries.com'
-      }
-    }
-
-    requestLib(requestOpts, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        var ghData = JSON.parse(body);
-        var ghDataRtn = {
-          total: 0,
-          raw: {}
-        };
-        _.each(ghData, function (release) {
-          _.each(release.assets, function (val) {
-            ghDataRtn.raw[val.name] = val.download_count;
-            ghDataRtn.total += val.download_count;
-          });
-        });
-
-        GH_CACHE = {
-          expiration: Date.now() + (30 * 1000),
-          data: ghDataRtn
-        }
-      }
-
+    getGitHubData(function (err, data) {
       res.render('stats', {github: GH_CACHE.data});
     });
   });
