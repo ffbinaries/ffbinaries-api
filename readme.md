@@ -1,6 +1,11 @@
 # ffbinaries.com
 
-This is the small API running on ffbinaries.com
+
+[![ffbinaries.com](https://img.shields.io/website-up-down-green-red/https/ffbinaries.com.svg?label=ffbinaries.com)](https://ffbinaries.com)
+
+Web API running on [ffbinaries.com](https://ffbinaries.com).
+
+It provides links to precompiled binaries of ffmpeg suite for Linux, Mac and Windows.
 
 
 ## Running the server locally
