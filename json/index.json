@@ -4,6 +4,7 @@
     "3.2": "%%BASEURL%%/api/v1/version/3.2",
     "3.3": "%%BASEURL%%/api/v1/version/3.3",
     "3.4": "%%BASEURL%%/api/v1/version/3.4",
-    "4.0": "%%BASEURL%%/api/v1/version/4.0"
+    "4.0": "%%BASEURL%%/api/v1/version/4.0",
+    "4.1": "%%BASEURL%%/api/v1/version/4.1"
   }
 }
