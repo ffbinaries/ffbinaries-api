@@ -38,10 +38,14 @@ function getNpmData (callback) {
   };
 
   requestLib(requestOpts, function (error, response, body) {
+    if (error) {
+      console.error(error);
+      return callback(error);
+    }
+
     if (!error && response.statusCode == 200) {
       var parsedData = JSON.parse(body);
 
-      console.log('getNpmData parsedData', parsedData)
       const npmData = {
         version: _.get(parsedData, 'dist-tags.latest')
       };
