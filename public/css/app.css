@@ -1,5 +1,6 @@
 h1, .jumbotron h1 {font-size: 34px}
 h2 { font-size: 26px; font-weight: 200; margin-bottom: 25px}
+h3 { font-weight: 300}
 .hero-gradient {background: linear-gradient(#ddd,#eee,#fff,#fff); margin: -10px 0 0; padding: 50px 0 30px;}
 .hero-gradient .jumbotron {background: none; padding: 0; margin: 0;}
 
