@@ -4,7 +4,9 @@
   "description": "Web API running on ffbinaries.com",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "Vot Z <https://vot-z.com>",
   "license": "ISC",
@@ -14,6 +16,8 @@
     "fs-extra": "^1.0.0",
     "hbs": "4.0.4",
     "lodash": "4.17.11",
-    "request": "2.88.0"
-  }
+    "request": "2.88.0",
+    "snyk": "^1.189.0"
+  },
+  "snyk": true
 }
