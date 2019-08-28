@@ -1,7 +1,21 @@
     <h1>Download binary files for ffmpeg suite</h1>
     <hr />
 
+    <div>
+      <label>Jump to version:</label>
+      &nbsp; &nbsp;
     {{#each versions}}
+      <a class="btn btn-default" href="#version_{{this.version}}">{{this.version}}</a>
+      &nbsp;
+    {{/each}}
+    </div>
+
+    {{#each versions}}
+      <div id="version_{{this.version}}"></div>
+
+      <br />
+      <hr />
+
       <h2>ffmpeg {{this.version}} binaries</h2>
 
       <table class="table table-hover text-center">
@@ -48,8 +62,4 @@
         {{/each}}
 
       </table>
-
-      <br />
-      <br />
-      <br />
     {{/each}}
