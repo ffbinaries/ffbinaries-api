@@ -168,7 +168,7 @@ function routes(app) {
       versions: {}
     };
 
-    var versions = getFfmpegVersions();
+    var versions = _.reverse(getFfmpegVersions());
     _.each(versions, function (v) {
       data.versions[v] = _getJson(v);
     });
