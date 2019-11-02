@@ -42,7 +42,7 @@ const config = {
     engine: hbs,
     partialsPath: path.join(__dirname, 'views/partials')
   },
-  currentVersion: '4.2'
+  currentVersion: '4.2.1'
 };
 
 // ensure request log file
