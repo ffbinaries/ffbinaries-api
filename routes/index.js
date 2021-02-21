@@ -68,7 +68,7 @@ function getGitHubData(callback) {
   }
 
   const requestOpts = {
-    url: 'https://api.github.com/repos/vot/ffbinaries-prebuilt/releases',
+    url: 'https://api.github.com/repos/ffbinaries/ffbinaries-prebuilt/releases',
     headers: {
       'User-Agent': 'ffbinaries.com'
     }
@@ -99,7 +99,7 @@ function getGitHubData(callback) {
     }
   });
 }
-// TODO: read https://api.github.com/repos/vot/ffbinaries-prebuilt/releases
+// TODO: read https://api.github.com/repos/ffbinaries/ffbinaries-prebuilt/releases
 
 function _replacePlaceholders(data, payload) {
   data = data.replace(/%%BASEURL%%/g, config.baseUrl);
