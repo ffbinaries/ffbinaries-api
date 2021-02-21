@@ -23,7 +23,7 @@ There's a CLI client available for this at https://www.npmjs.com/package/ffbinar
 ## Binaries used
 
 All binaries provided by ffbinaries are hosted on GitHub
-(https://github.com/vot/ffbinaries-prebuilt/releases) and are simply repackaged
+(https://github.com/ffbinaries/ffbinaries-prebuilt/releases) and are simply repackaged
 versions of packages provided by other people (see Credits section).
 
 Repackaging was done in order to provide consistent archive format
