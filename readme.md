@@ -1,11 +1,11 @@
-# ffbinaries.com
+# FFbinaries.com
 
 
-[![ffbinaries.com](https://img.shields.io/website-up-down-green-red/https/ffbinaries.com.svg?label=ffbinaries.com)](https://ffbinaries.com)
+[![FFbinaries.com](https://img.shields.io/website-up-down-green-red/https/ffbinaries.com.svg?label=ffbinaries.com)](https://ffbinaries.com)
 
-Web API running on [ffbinaries.com](https://ffbinaries.com).
+Web API running on [FFbinaries.com](https://ffbinaries.com).
 
-It provides links to precompiled binaries of ffmpeg suite for Linux, Mac and Windows.
+It provides links to precompiled binaries of FFmpeg suite for Linux, Mac and Windows.
 
 
 ## Running the server locally
@@ -22,8 +22,8 @@ There's a CLI client available for this at https://www.npmjs.com/package/ffbinar
 
 ## Binaries used
 
-All binaries provided by ffbinaries are hosted on GitHub
-(https://github.com/vot/ffbinaries-prebuilt/releases) and are simply repackaged
+All binaries provided by FFbinaries are hosted on GitHub
+(https://github.com/ffbinaries/ffbinaries-prebuilt/releases) and are simply repackaged
 versions of packages provided by other people (see Credits section).
 
 Repackaging was done in order to provide consistent archive format
