@@ -1,0 +1,103 @@
+<h1>Transcoding quickstart</h1>
+<hr />
+
+<div class="row">
+
+  <div class="col-sm-12 col-md-3">
+    <h2>Hardware acceleration</h2>
+
+    <p><strong>Apple</strong></p>
+    <p><strong>nVidia</strong></p>
+    <p><strong>AMD</strong></p>
+    <p><strong>Intel</strong></p>
+
+  </div>
+
+  <div class="col-sm-12 col-md-9">
+    <h2>Hardware acceleration</h2>
+
+
+    <p>
+      <strong>Check hardware acceleration support</strong>
+      <br />
+      <code>ffmpeg -hide_banner -hwaccels</code>
+    </p>
+
+    <br />
+
+    <p>
+      <strong>Apple</strong>
+      <br />
+      <code>-c:v h264_videotoolbox -b:v 1M -maxrate 4M -bufsize 16M</code>
+      <code>-c:v hevc_videotoolbox -b:v 1M -maxrate 4M -bufsize 16M</code>
+    </p>
+
+    <br />
+
+    <p>
+      <strong>nVidia</strong>
+      <br />
+      <code>...</code>
+      <code>...</code>
+    </p>
+
+    <br />
+
+    <p>
+      <strong>AMD</strong>
+      <br />
+      <code>...</code>
+      <code>...</code>
+    </p>
+
+    <br />
+
+    <p>
+      <strong>Intel Quick Sync</strong>
+      <br />
+      <code>...</code>
+      <code>-hwaccel qsv -pix_fmt yuv420p -i file-in.mkv \
+        -c:v hevc_qsv -load_plugin hevc_hw -b 10M -y file-out.mp4
+      </code>
+    </p>
+
+
+    <br />
+    <br />
+
+    <h2>Burning in subtitles (hard sub)</h2>
+
+    <p>
+      <strong>Extract .ass file from container</strong>
+      <br />
+      <code>ffmpeg -i file-input.mkv file-out-subtitles.ass</code>
+
+      <strong>Re-encode the video with subtitles burned in</strong>
+      <br />
+      <code>ffmpeg -i file-input.mkv \
+       -vf subtitles=file-out-subtitles.ass:force_style='FontName=Helvetica Neue' \
+       file-out.mp4
+      </code>
+    </p>
+
+    <br />
+    <br />
+
+    <h2>Stereo downmix</h2>
+
+    <p>
+      <strong>Stereo downmix</strong>
+      <br />
+      <code>-ac 2</code>
+    </p>
+
+    <br />
+
+
+
+  </div>
+
+</div>
+
+
+  <br /><br />
