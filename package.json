@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "clarg": "0.0.4",
-    "express": "4.18.2",
+    "express": "4.21.2",
     "fs-extra": "^8.1.0",
     "hbs": "4.2.0",
     "lodash": "4.17.21",
